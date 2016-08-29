@@ -3,7 +3,7 @@ OMDb API
 
 A Java library for the Open Movie Database API.  It simplifies the process of making HTTP requests against the API, request construction, and response parsing for Java/Android developers.
 
-**Installation:**
+##Installation
 
 Install using [Gradle](http://gradle.org/):
 
@@ -19,7 +19,6 @@ dependencies {
 }
 ```
 
-----------
 
 
 ##Usage
