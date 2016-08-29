@@ -1,7 +1,6 @@
 package org.brianodisho.omdb;
 
 import org.brianodisho.omdb.model.DetailedListing;
-import org.brianodisho.omdb.model.Listing;
 import org.brianodisho.omdb.model.SearchResponse;
 import org.junit.Test;
 
@@ -17,7 +16,7 @@ public class SearchTest {
 
     @Test
     public void search() throws Exception {
-        OmdbAPI omdbAPI = OmdbFactory.getInstance().getOmdbAPI();
+        OmdbAPI omdbAPI = OmdbAPIFactory.getInstance().getOmdbAPI();
         Query query = new Query();
         query.put("s", title);
         SearchResponse searchResponse = omdbAPI.search(query);
@@ -28,7 +27,7 @@ public class SearchTest {
 
     @Test
     public void getDetailedListingByTitle() throws Exception {
-        OmdbAPI omdbAPI = OmdbFactory.getInstance().getOmdbAPI();
+        OmdbAPI omdbAPI = OmdbAPIFactory.getInstance().getOmdbAPI();
         Query query = new Query();
         query.put("t", title);
         DetailedListing movie = omdbAPI.getDetailedListing(query);
@@ -38,7 +37,7 @@ public class SearchTest {
 
     @Test
     public void getDetailedListingByID() throws Exception {
-        OmdbAPI omdbAPI = OmdbFactory.getInstance().getOmdbAPI();
+        OmdbAPI omdbAPI = OmdbAPIFactory.getInstance().getOmdbAPI();
         Query query = new Query();
         query.put("i", imdbID);
         DetailedListing movie = omdbAPI.getDetailedListing(query);
@@ -48,7 +47,7 @@ public class SearchTest {
 
     @Test(expected = OmdbException.class)
     public void getDetailedListingException() throws Exception {
-        OmdbAPI omdbAPI = OmdbFactory.getInstance().getOmdbAPI();
+        OmdbAPI omdbAPI = OmdbAPIFactory.getInstance().getOmdbAPI();
         Query query = new Query();
         DetailedListing movie = omdbAPI.getDetailedListing(query);
     }

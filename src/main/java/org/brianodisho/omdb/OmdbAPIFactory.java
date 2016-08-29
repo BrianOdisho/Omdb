@@ -7,19 +7,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by brianodisho on 8/18/16.
  */
-public class OmdbFactory {
+public class OmdbAPIFactory {
 
     private static final String BASE_URL = "http://omdbapi.com";
-    private static OmdbFactory instance = new OmdbFactory();
+    private static OmdbAPIFactory instance = new OmdbAPIFactory();
     private OmdbAPI omdbAPI;
 
-    private OmdbFactory() {
+    private OmdbAPIFactory() {
         Retrofit retrofit = createAdapter().build();
         Omdb omdb = retrofit.create(Omdb.class);
         omdbAPI = new OmdbAPI(omdb);
     }
 
-    public static OmdbFactory getInstance() {
+    public static OmdbAPIFactory getInstance() {
         return instance;
     }
 
