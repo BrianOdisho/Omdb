@@ -1,12 +1,50 @@
+buildscript{
+    repositories{
+        jcenter()
+    }
+}
+
+plugins {
+    id "com.jfrog.bintray" version "1.7"
+}
+
 group 'org.brianodisho.omdb'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
+allprojects{
+    repositories {
+        jcenter()
+    }
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+}
 
-sourceCompatibility = 1.8
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId 'org.brianodisho.omdb'
+            artifactId 'omdb'
+            version '1.0'
+        }
+    }
+}
 
-repositories {
-    mavenCentral()
+bintray {
+    user = 'brianodisho'
+    key = ''
+    publications = ['MyPublication']
+
+    pkg {
+        repo = 'itsBGO'
+        name = 'Omdb'
+
+        version {
+            name = '1.0'
+            desc = 'A Java library for the Open Movie Database API.'
+        }
+    }
 }
 
 dependencies {
