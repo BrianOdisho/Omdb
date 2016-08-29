@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     ...
-    compile 'xxxxxxxxxx'
+    compile 'org.brianodisho.omdb:omdb:1.0'
     ...
 }
 ```
