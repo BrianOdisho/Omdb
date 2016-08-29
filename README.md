@@ -9,7 +9,9 @@ Install using [Gradle](http://gradle.org/):
 
 ```groovy
 repositories {
-    mavenCentral()
+    maven{
+        url 'https://dl.bintray.com/brianodisho/itsBGO'
+    }
 }
 
 dependencies {
