@@ -10,7 +10,7 @@ Install using [Gradle](http://gradle.org/):
 ```groovy
 repositories {
     maven{
-        url 'https://dl.bintray.com/brianodisho/itsBGO'
+        url 'https://dl.bintray.com/brianodisho/omdb'
     }
 }
 
