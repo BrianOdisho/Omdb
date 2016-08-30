@@ -1,3 +1,5 @@
+[![Download](https://api.bintray.com/packages/brianodisho/omdb/omdb/images/download.svg)](https://bintray.com/brianodisho/omdb/omdb/_latestVersion)
+
 OMDb API
 ---------------
 
