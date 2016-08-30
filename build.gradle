@@ -8,16 +8,15 @@ plugins {
     id "com.jfrog.bintray" version "1.7"
 }
 
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
 group 'org.brianodisho.omdb'
 version '1.0'
 
-allprojects {
-    repositories {
-        jcenter()
-    }
-    apply plugin: 'java'
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
+repositories {
+    jcenter()
 }
 
 task sourceJar(type: Jar) {
@@ -28,9 +27,6 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-            groupId = project.group
-            artifactId 'omdb'
-            version = project.version
 
             artifact sourceJar {
                 classifier "sources"
@@ -43,8 +39,8 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.key")
+    user = ''
+    key = ''
     publications = ['mavenJava']
 
     pkg {
@@ -52,9 +48,7 @@ bintray {
         name = 'omdb'
         version {
             name = project.version
-            desc = 'A Java library for the Open Movie Database API.'
         }
-
     }
 }
 
