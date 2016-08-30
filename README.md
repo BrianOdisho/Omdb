@@ -1,17 +1,28 @@
+[![Download](https://api.bintray.com/packages/brianodisho/omdb/omdb/images/download.svg)](https://bintray.com/brianodisho/omdb/omdb/_latestVersion)
+
 OMDb API
 ---------------
 
-A Java library for the Open Movie Database API.  It simplifies the process of making HTTP requests against the API, request construction, and response parsing for Java/Android developers.
+A Java library for the [Open Movie Database API](http://omdbapi.com/).  It simplifies the process of making HTTP requests against the API, request construction, and response parsing for Java/Android developers.
 
 ##Installation
+
+Install using [Maven](https://maven.apache.org/):
+
+```xml
+<dependency>
+  <groupId>org.brianodisho.omdb</groupId>
+  <artifactId>omdb</artifactId>
+  <version>1.0</version>
+</dependency>
+```
+or
 
 Install using [Gradle](http://gradle.org/):
 
 ```groovy
 repositories {
-    maven{
-        url 'https://dl.bintray.com/brianodisho/itsBGO'
-    }
+    jcenter()
 }
 
 dependencies {
