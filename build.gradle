@@ -9,9 +9,9 @@ plugins {
 }
 
 group 'org.brianodisho.omdb'
-version '1.0-SNAPSHOT'
+version '1.0'
 
-allprojects{
+allprojects {
     repositories {
         jcenter()
     }
@@ -20,13 +20,21 @@ allprojects{
     apply plugin: 'maven-publish'
 }
 
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
 publishing {
     publications {
-        MyPublication(MavenPublication) {
+        mavenJava(MavenPublication) {
             from components.java
-            groupId 'org.brianodisho.omdb'
+            groupId = project.group
             artifactId 'omdb'
-            version '1.0'
+            version = project.version
+
+            artifact sourceJar {
+                classifier "sources"
+            }
         }
     }
 }
@@ -37,16 +45,16 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.key")
-    publications = ['MyPublication']
+    publications = ['mavenJava']
 
     pkg {
-        repo = 'itsBGO'
-        name = 'Omdb'
-
+        repo = 'omdb'
+        name = 'omdb'
         version {
-            name = '1.0'
+            name = project.version
             desc = 'A Java library for the Open Movie Database API.'
         }
+
     }
 }
 
