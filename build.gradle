@@ -31,9 +31,12 @@ publishing {
     }
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 bintray {
-    user = 'brianodisho'
-    key = ''
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.key")
     publications = ['MyPublication']
 
     pkg {
