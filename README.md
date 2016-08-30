@@ -7,6 +7,17 @@ A Java library for the [Open Movie Database API](http://omdbapi.com/).  It simpl
 
 ##Installation
 
+Install using [Maven](https://maven.apache.org/):
+
+```xml
+<dependency>
+  <groupId>org.brianodisho.omdb</groupId>
+  <artifactId>omdb</artifactId>
+  <version>1.0</version>
+</dependency>
+```
+or
+
 Install using [Gradle](http://gradle.org/):
 
 ```groovy
