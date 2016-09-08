@@ -13,7 +13,7 @@ Install using [Maven](https://maven.apache.org/):
 <dependency>
   <groupId>org.brianodisho.omdb</groupId>
   <artifactId>omdb</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
 </dependency>
 ```
 or
@@ -27,7 +27,7 @@ repositories {
 
 dependencies {
     ...
-    compile 'org.brianodisho.omdb:omdb:1.0'
+    compile 'org.brianodisho.omdb:omdb:1.1'
     ...
 }
 ```
