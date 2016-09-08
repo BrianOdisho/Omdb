@@ -9,28 +9,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class OmdbAPIFactory {
 
-    private static final String BASE_URL = "http://omdbapi.com";
-    private static OmdbAPIFactory instance = new OmdbAPIFactory();
-    private OmdbAPI omdbAPI;
+    private OmdbAPIFactory() {}
 
-    private OmdbAPIFactory() {
-        Retrofit retrofit = createAdapter().build();
-        Omdb omdb = retrofit.create(Omdb.class);
-        omdbAPI = new OmdbAPI(omdb);
-    }
 
-    public static OmdbAPIFactory getInstance() {
-        return instance;
-    }
-
-    public OmdbAPI getOmdbAPI() {
-        return omdbAPI;
-    }
-
-    private Retrofit.Builder createAdapter() {
+    private static Retrofit retrofit() {
         return new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create());
+                .baseUrl("http://omdbapi.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
+
+
+    public static OmdbAPI getOmdbAPI() {
+        Omdb omdb = retrofit().create(Omdb.class);
+        return new OmdbAPI(omdb);
     }
 
 }
