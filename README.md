@@ -36,7 +36,7 @@ dependencies {
 
 ##Usage
 
-This library uses an `OmdbAPI` object to query against the API. Instantiate an `OmdbAPI` object by using `OmdbAPIFactory`.
+This library uses an `OmdbAPI` object to queryOld against the API. Instantiate an `OmdbAPI` object by using `OmdbAPIFactory`.
          
 ```java       
 OmdbAPI omdbAPI = OmdbAPIFactory.getInstance().getOmdbAPI();
@@ -50,26 +50,26 @@ OmdbAPI omdbAPI = OmdbAPIFactory.getInstance().getOmdbAPI();
 A `Query` object must be passed to the `search()` or `getDetailedListing()` methods to make requests against the API.  A `Query` object wraps a `Map<String, String>` object and accepts new <key, value> pairs similarly to a map.
 
 ```java
-Query searchQuery = new Query();
-searchQuery.put("s", "finding nemo");
-searchQuery.put("type", "movie");
+Query query = new Query();
+query.put("s", "finding nemo");
+query.put("type", "movie");
 
 try {
-	SearchResponse response = omdbAPI.search(searchQuery);
+	SearchResponse response = omdbAPI.search(query);
 } catch (IOException | OmdbException e) {
 	e.printStackTrace();
 }
 ```
 
 ```java
-Query query = new Query();
+Query queryOld = new Query();
 
-query.put("t", "fight club"); // title
-query.put("y", "1999"); // year
-query.put("type", "movie"); // type
+queryOld.put("t", "fight club"); // title
+queryOld.put("y", "1999"); // year
+queryOld.put("type", "movie"); // type
 
 try {
-	DetailedListing movie = omdbAPI.getDetailedListing(query);
+	DetailedListing movie = omdbAPI.getDetailedListing(queryOld);
 } catch (IOException | OmdbException e) {
 	e.printStackTrace();
 }

@@ -13,7 +13,7 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 group 'org.brianodisho.omdb'
-version '1.0'
+version '1.1'
 
 repositories {
     jcenter()
