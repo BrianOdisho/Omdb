@@ -12,28 +12,24 @@ public class OmdbAPI {
 
     private Omdb omdb;
 
-    private OmdbAPI() {}
 
     public OmdbAPI(Omdb omdb) {
         this.omdb = omdb;
     }
 
+
     public SearchResponse search(Query query) throws IOException, OmdbException {
-        if (query.containsKey("s")) {
-            return omdb.search(query.getQueryMap()).execute().body();
+        if (query.getQueryMap().get("t").isEmpty()) {
+            throw new OmdbException("Query must contain title parameter for search.");
         } else {
-            throw new OmdbException("Query must contain a mapping for the \"s\" key to be a valid query in a search");
+            query.getQueryMap().put("s", query.getQueryMap().get("t"));
+            return omdb.search(query.getQueryMap()).execute().body();
         }
     }
 
-    public DetailedListing getDetailedListing(Query query) throws IOException, OmdbException {
-        if (query.containsKey("i") || query.containsKey("t")) {
-            return omdb.getDetailedListing(query.getQueryMap()).execute().body();
-        } else {
-            throw new OmdbException(
-                    "Query must contain a mapping for at least the \"i\" or \"t\" key to be a valid query" +
-                    "for getting a detailed listing.");
-        }
+
+    public DetailedListing getDetailedListing(Query query) throws IOException {
+        return omdb.getDetailedListing(query.getQueryMap()).execute().body();
     }
 
 }
