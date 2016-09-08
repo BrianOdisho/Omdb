@@ -23,6 +23,13 @@ task sourceJar(type: Jar) {
     from sourceSets.main.allJava
 }
 
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -31,6 +38,10 @@ publishing {
             artifact sourceJar {
                 classifier "sources"
             }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+
         }
     }
 }
@@ -39,8 +50,8 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 bintray {
-    user = ''
-    key = ''
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.key")
     publications = ['mavenJava']
 
     pkg {
