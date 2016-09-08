@@ -1,61 +1,62 @@
 package org.brianodisho.omdb;
 
-import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
 /**
- * Created by brianodisho on 8/22/16.
+ * Created by brianodisho on 8/31/16.
  */
 public class QueryTest {
 
     private final String title = "Fight Club";
     private final String imdbID = "tt0137523";
-    private final String year = "1999";
     private final String type = "movie";
-    private final String plot = "short";
+    private final String year = "1999";
+    private final String page = "1";
 
     @Test
-    public void put() throws Exception {
-        Query query = new Query();
+    public void QueryTitleTest() throws Exception {
+        Query query = new Query.Builder(title).build();
+        Map<String, String> queryMap = query.getQueryMap();
 
-        assertEquals(title, query.put("t", title));
-        assertEquals(imdbID, query.put("i", imdbID));
-        assertEquals(year, query.put("y", year));
-        assertEquals(type, query.put("type", type));
-        assertEquals(plot, query.put("plot", plot));
-        assertNull(query.put("UNDEFINED_KEY", title));
-        assertNull(query.put("type", "invalidValue"));
-        assertNull(query.put("plot", "invalidValue"));
+        assertEquals(title, queryMap.get("t"));
+        assertEquals("", queryMap.get("i"));
+        assertEquals("", queryMap.get("type"));
+        assertEquals("", queryMap.get("y"));
+        assertEquals("", queryMap.get("page"));
     }
 
     @Test
-    public void get() throws Exception {
-        Query query = new Query();
+    public void QueryIDTest() throws Exception {
+        Query query = new Query.Builder(imdbID).build();
+        Map<String, String> queryMap = query.getQueryMap();
 
-        assertEquals(query.put("t", title), query.get("t"));
-        assertEquals(query.put("i", imdbID), query.get("i"));
-        assertEquals(query.put("y", year), query.get("y"));
-        assertEquals(query.put("type", type), query.get("type"));
-        assertEquals(query.put("plot", plot), query.get("plot"));
-        assertNull(query.get("UNDEFINED_KEY"));
+        assertEquals("", queryMap.get("t"));
+        assertEquals(imdbID, queryMap.get("i"));
+        assertEquals("", queryMap.get("type"));
+        assertEquals("", queryMap.get("y"));
+        assertEquals("", queryMap.get("page"));
     }
 
     @Test
-    public void getQueryMap() throws Exception {
-        Query query = new Query();
-        query.put("t", title);
-        query.put("i", imdbID);
-        query.put("y", year);
-        query.put("type", type);
-        query.put("plot", plot);
+    public void QueryAllTest() throws Exception {
+        Query query = new Query.Builder(title)
+                .title(title)
+                .imdbID(imdbID)
+                .type(type)
+                .year(year)
+                .page(page)
+                .build();
 
-        assertTrue(query.getQueryMap().containsKey("t"));
-        assertTrue(query.getQueryMap().containsKey("i"));
-        assertTrue(query.getQueryMap().containsKey("y"));
-        assertTrue(query.getQueryMap().containsKey("type"));
-        assertTrue(query.getQueryMap().containsKey("plot"));
+        Map<String, String> queryMap = query.getQueryMap();
+
+        assertEquals(title, queryMap.get("t"));
+        assertEquals(imdbID, queryMap.get("i"));
+        assertEquals(type, queryMap.get("type"));
+        assertEquals(year, queryMap.get("y"));
+        assertEquals(page, queryMap.get("page"));
     }
-
 }
