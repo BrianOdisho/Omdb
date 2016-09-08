@@ -18,6 +18,8 @@ public class SearchResponse {
     @SerializedName("Response")
     private String response;
 
+    @SerializedName("Error")
+    private String error;
 
     public List<Listing> getResults() {
         return results;
@@ -29,6 +31,10 @@ public class SearchResponse {
 
     public String getResponse() {
         return response;
+    }
+
+    public String getError() {
+        return error;
     }
 
 }
