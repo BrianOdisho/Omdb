@@ -29,6 +29,9 @@ public class OmdbAPI {
 
 
     public DetailedListing getDetailedListing(Query query) throws IOException {
+        if (query.getQueryMap().containsKey("s")) {
+            query.getQueryMap().replace("s", "");
+        }
         return omdb.getDetailedListing(query.getQueryMap()).execute().body();
     }
 
