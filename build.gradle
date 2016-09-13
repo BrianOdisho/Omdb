@@ -8,12 +8,16 @@ plugins {
     id "com.jfrog.bintray" version "1.7"
 }
 
+
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 group 'org.brianodisho.omdb'
-version '1.1'
+version '1.2'
 
 repositories {
     jcenter()
